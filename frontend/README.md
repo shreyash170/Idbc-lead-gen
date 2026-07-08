@@ -1,144 +1,70 @@
-# IDBI Smart Lead Engine — Track 02 PoC
+# Getting Started with Create React App
 
-**Behavioral & Transaction-Driven Lead Generation for Retail Lending**
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Live Demo: https://frontend-ek1apoz7u-shreyash170s-projects.vercel.app
-Backend API: https://idbc-lead-gen.onrender.com/api/leads
+## Available Scripts
 
-> Note: The backend runs on Render's free tier and may take 30–60 seconds to
-> wake up if it hasn't been used recently. If the dashboard shows no leads on
-> first load, please wait a moment and refresh.
+In the project directory, you can run:
 
----
+### `npm start`
 
-## Problem Statement
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-Bank's retail lending relies on traditional metrics, resulting in low
-conversions and limited insight into customer intent. A data-driven approach
-is needed to identify eligible, quantifiable repayment capacity, and
-genuinely interested prospects using transaction and behavioral insights.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-**Expected Outcome:** Generate high-quality leads with a conversion rate
-exceeding 30%, while enabling accurate assessment of borrowers' actual
-income levels to support prudent underwriting for Personal Loans, Home
-Loans, Mortgage Loans, and Auto Loans.
+### `npm test`
 
----
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## Our Approach
+### `npm run build`
 
-Instead of relying only on declared income and static credit scores, we
-combine three signal groups into a single, explainable **Lead Score (0–100)**:
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-1. **Transactional Behavior** — UPI transaction volume, average account
-   balance, spending patterns
-2. **Financial Stability** — savings rate, existing loan burden, credit
-   card utilization
-3. **Loan Intent Signals** — branch visits, loan page searches, active
-   inquiries by loan type
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-This produces two outputs per customer:
-- An **estimated actual income**, blended from declared salary and
-  behavioral spending signals — more resistant to under-reporting than
-  salary slips alone
-- A **Lead Score** with a plain-language breakdown of *why* that score was
-  given, so relationship managers can trust and act on it rather than
-  treating it as a black box
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Architecture
+### `npm run eject`
 
-```
-Synthetic Data Generator (Faker.js)
-            │
-            ▼
-   Node.js / Express API
-   ├── /api/leads        → ranked, filterable lead list + summary stats
-   └── /api/leads/:id     → single customer detail with full score breakdown
-            │
-            ▼
-     React Dashboard (RM-facing)
-   ├── Filter by loan type & minimum score
-   ├── Score distribution histogram
-   └── Detail drawer with score explainability
-```
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-## Tech Stack
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-| Layer | Technology |
-|---|---|
-| Backend | Node.js, Express |
-| Frontend | React |
-| Synthetic Data | Faker.js (300 generated customer profiles) |
-| Backend Hosting | Render |
-| Frontend Hosting | Vercel |
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-## Running Locally
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-### Backend
-```bash
-cd backend
-npm install
-node data/generateData.js   # generates synthetic dataset (run once)
-node server.js               # starts API on port 5050
-```
+## Learn More
 
-### Frontend
-```bash
-cd frontend
-npm install
-npm start                    # runs on port 3000
-```
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-By default, the frontend points to the deployed Render backend. To test
-against your local backend instead, change `API_BASE` in
-`frontend/src/App.js` to `http://localhost:5050/api/leads`.
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-## Sample Results (on synthetic data)
+### Code Splitting
 
-- 300 synthetic customer profiles generated
-- 217 leads scored above the 60-point threshold
-- Predicted conversion rate exceeding the 30% target benchmark
-- Every lead comes with a transparent, human-readable explanation
-  (e.g. "Strong repayment capacity", "High loan intent signal")
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-## Why This Approach Solves the Problem
+### Analyzing the Bundle Size
 
-- **Higher conversion quality:** intent signals (branch visits, active
-  searches) are weighted heavily, filtering out browsers from genuine
-  prospects
-- **Better underwriting inputs:** the estimated income figure blends
-  declared salary with real transaction behavior, reducing reliance on
-  self-reported numbers alone
-- **Explainability by design:** every score ships with reasons attached,
-  so RMs and credit teams can audit and trust the output — a requirement
-  for real banking deployment, not just a hackathon nicety
-- **Loan-type aware:** scoring and filtering work across Personal, Home,
-  Auto, and Mortgage loans as required by the problem statement
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-## Path to Production
+### Making a Progressive Web App
 
-This PoC currently runs on synthetic data. In a bank sandbox environment,
-the same scoring architecture would plug directly into:
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-- **UPI/Account Aggregator APIs** in place of the synthetic transaction feed
-- **Core banking salary credit data** in place of the declared salary field
-- **CRM/branch visit logs** in place of the simulated intent signal
-- A **trained ML classifier** (logistic regression / gradient boosting) in
-  place of the current rule-weighted scoring, once labeled historical
-  conversion data is available for training
+### Advanced Configuration
 
-## Team
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-Shreyash Gupta
-Shalu Jawla
-Anjali Parashar
-Deepak Kumar
+### Deployment
 
-## Future Scope
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-- Replace rule-based scoring with a trained ML model once real
-  conversion-labeled data is available
-- Android companion app for relationship managers (push alerts on
-  high-score leads)
-- Integration with IDBI's sandbox APIs (GST, UPI, AA, EPFO) for real
-  alternate-data ingestion
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
