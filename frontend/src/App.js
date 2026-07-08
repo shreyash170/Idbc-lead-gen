@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:5050/api/leads';
+const API_BASE = 'https://idbc-lead-gen.onrender.com/api/leads';
 const loanTypes = ['All', 'Personal Loan', 'Home Loan', 'Auto Loan', 'Mortgage Loan'];
 
 export default function App() {
@@ -28,7 +28,8 @@ export default function App() {
     }
   };
 
-  useEffect(() => { fetchLeads(); /* eslint-disable-next-line */ }, [loanType, minScore]);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+useEffect(() => { fetchLeads(); }, [loanType, minScore]);
 
   const sortedLeads = useMemo(() => {
     const copy = [...leads];
